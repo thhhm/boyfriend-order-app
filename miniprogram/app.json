@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "游杰 × 张雨茜 · 爱的点单",
+    "navigationBarBackgroundColor": "#fff7f3",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#fffaf8",
+    "backgroundTextStyle": "light"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,19 @@
+page {
+  background: #fffaf8;
+  color: #4c3a3a;
+  font-family: -apple-system-font, "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: 28rpx;
+}
+
+view, text, button, input, textarea, scroll-view {
+  box-sizing: border-box;
+}
+
+button {
+  border: 0;
+  line-height: 1.4;
+}
+
+button::after {
+  border: 0;
+}

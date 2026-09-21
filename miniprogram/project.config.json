@@ -1,0 +1,16 @@
+{
+  "appid": "wx-placeholder",
+  "compileType": "miniprogram",
+  "projectname": "情侣点单小程序",
+  "miniprogramRoot": "./",
+  "setting": {
+    "es6": true,
+    "enhance": true,
+    "urlCheck": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "postcss": true,
+    "minified": true
+  },
+  "condition": {}
+}

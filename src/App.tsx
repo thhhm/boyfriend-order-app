@@ -37,6 +37,22 @@ const services: Service[] = [
   { id: 'game', emoji: '🎮', name: '线上双人小游戏', description: '选一款轻松小游戏，一起笑到停不下来', detail: '约 1 小时 · 无聊的时候', category: '娱乐互动', tag: '一起玩呀', tone: 'blue' },
   { id: 'story', emoji: '📖', name: '轮流讲故事', description: '你一句我一句，编一个只属于我们的故事', detail: '约 30 分钟 · 睡前适用', category: '娱乐互动', tag: '想象起飞', tone: 'peach' },
   { id: 'takeout', emoji: '🥡', name: '异地点同款晚餐', description: '各自点一份同样的食物，打开视频一起吃', detail: '约 1 小时 · 晚餐时间', category: '异地陪伴', tag: '云端干杯', tone: 'mint' },
+  { id: 'remote-breakfast', emoji: '🥣', name: '远程早餐陪伴', description: '各自端上早餐，开着语音一起迎接早晨', detail: '约 30 分钟 · 工作日早晨', category: '异地陪伴', tag: '一起开饭', tone: 'yellow' },
+  { id: 'remote-lunch', emoji: '🍱', name: '远程午餐约会', description: '午休不孤单，边吃边交换上午的小发现', detail: '约 40 分钟 · 午休时间', category: '异地陪伴', tag: '午间见面', tone: 'peach' },
+  { id: 'sync-exercise', emoji: '🏃‍♀️', name: '同步运动打卡', description: '各自完成一组拉伸或散步，拍照互相鼓励', detail: '约 30 分钟 · 下班后', category: '贴心照顾', tag: '健康相伴', tone: 'mint' },
+  { id: 'gift-shopping', emoji: '🛍️', name: '线上逛街挑礼物', description: '分享屏幕一起选一件小礼物，不超预算也开心', detail: '约 1 小时 · 想送心意时', category: '仪式感', tag: '一起挑选', tone: 'rose' },
+  { id: 'study-work', emoji: '💻', name: '远程学习工作陪伴', description: '开着视频各自专注，休息时给彼此一个拥抱', detail: '约 90 分钟 · 需要专注时', category: '异地陪伴', tag: '并肩努力', tone: 'blue' },
+  { id: 'travel-plan', emoji: '🗺️', name: '旅行攻略共创', description: '一起查路线、收藏小店，做一份下次见面的计划', detail: '约 1 小时 · 期待旅行时', category: '仪式感', tag: '未来地图', tone: 'lavender' },
+  { id: 'voice-diary', emoji: '🎙️', name: '照片语音日记交换', description: '各录一段今天的声音，再配一张照片互相收藏', detail: '约 15 分钟 · 睡前交换', category: '异地陪伴', tag: '保存此刻', tone: 'blue' },
+  { id: 'comfort-kit', emoji: '🧸', name: '情绪急救包', description: '准备安慰语音、喜欢的歌和一个可执行的小计划', detail: '约 20 分钟 · 心情低落时', category: '贴心照顾', tag: '先抱一下', tone: 'pink' },
+  { id: 'praise-random', emoji: '🌷', name: '随机夸夸十连', description: '认真说出十个喜欢你的理由，让今天亮晶晶', detail: '约 10 分钟 · 需要自信时', category: '贴心照顾', tag: '夸到心里', tone: 'rose' },
+  { id: 'sunrise-sunset', emoji: '🌅', name: '线上看日出日落', description: '约好同一时刻打开镜头，把两边天空拼在一起', detail: '约 20 分钟 · 清晨或傍晚', category: '仪式感', tag: '共享天空', tone: 'yellow' },
+  { id: 'map-postcard', emoji: '📍', name: '地图足迹明信片', description: '从地图上选一个今天走过的地方，写一句小明信片', detail: '约 15 分钟 · 分享日常时', category: '仪式感', tag: '寄一段路', tone: 'mint' },
+  { id: 'podcast', emoji: '🎙️', name: '共同歌单或播客', description: '各推荐一首歌或一期播客，交换后聊聊感受', detail: '约 30 分钟 · 通勤路上', category: '娱乐互动', tag: '耳朵约会', tone: 'lavender' },
+  { id: 'stretching', emoji: '🧘‍♀️', name: '远程拉伸教学', description: '跟着游杰慢慢活动肩颈和腰背，轻松一点点', detail: '约 15 分钟 · 久坐之后', category: '贴心照顾', tag: '舒展一下', tone: 'mint' },
+  { id: 'weekly-review', emoji: '📝', name: '周计划温柔复盘', description: '一起回顾本周三件开心事，再安排下周的小期待', detail: '约 30 分钟 · 周日晚间', category: '贴心照顾', tag: '把日子过好', tone: 'peach' },
+  { id: 'blind-box', emoji: '🎁', name: '异地盲盒任务', description: '轮流发一个低成本小任务，完成后交换照片或语音', detail: '约 20 分钟 · 想玩点新鲜的', category: '娱乐互动', tag: '打开惊喜', tone: 'pink' },
+  { id: 'poem', emoji: '🌙', name: '睡前读诗给你听', description: '挑一首短诗或故事，用声音把晚安送到你耳边', detail: '约 15 分钟 · 睡前时光', category: '仪式感', tag: '温柔入梦', tone: 'lavender' },
 ]
 
 const categories: Category[] = ['全部', '异地陪伴', '仪式感', '贴心照顾', '娱乐互动']

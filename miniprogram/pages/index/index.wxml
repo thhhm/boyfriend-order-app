@@ -1,0 +1,61 @@
+<view class="page">
+  <view class="hero">
+    <view class="eyebrow">♡ boyfriend service menu</view>
+    <view class="names">游杰 <text>×</text> 张雨茜</view>
+    <view class="hero-title">今天想要一份<text>什么样的爱？</text></view>
+    <view class="hero-copy">这是游杰为张雨茜准备的专属服务菜单。<br />把想要的爱温柔地告诉他～</view>
+    <button class="hero-button" bindtap="openCart">我的订单 <text wx:if="{{cartCount}}">{{cartCount}}</text></button>
+    <view class="hero-note">☀ 今日营业中 · 无限宠爱供应</view>
+  </view>
+
+  <view class="content">
+    <view class="section-kicker">TA 可以为你做的</view>
+    <view class="section-title">选择你的专属服务 <text>♡</text></view>
+    <view class="toolbar">
+      <scroll-view class="tabs" scroll-x>
+        <button wx:for="{{categories}}" wx:key="*this" class="{{category === item ? 'tab active' : 'tab'}}" data-category="{{item}}" bindtap="selectCategory">{{item}}</button>
+      </scroll-view>
+      <input class="search" value="{{query}}" bindinput="onSearch" placeholder="搜索想要的服务..." />
+    </view>
+
+    <view class="service-grid">
+      <block wx:for="{{visibleServices}}" wx:key="id">
+        <view class="service-card">
+          <view class="card-top"><text class="emoji">{{item.emoji}}</text><text class="tag">{{item.tag}}</text></view>
+          <view class="service-name">{{item.name}}</view>
+          <view class="description">{{item.description}}</view>
+          <view class="card-bottom"><text class="detail">♡ {{item.detail}}</text><button class="add" data-id="{{item.id}}" bindtap="addService">加入订单 ＋</button></view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view wx:if="{{cartOpen}}" class="mask" catchtap="closeCart">
+    <view class="cart-panel" catchtap="noop">
+      <view class="panel-head"><view><view class="section-kicker">your little wish list</view><view class="section-title">我的订单 <text>♡</text></view></view><button class="close" bindtap="closeCart">×</button></view>
+      <view wx:if="{{!cart.length}}" class="empty"><text>🧺</text><view>订单还是空空的</view><button class="primary" bindtap="closeCart">去逛逛</button></view>
+      <block wx:else>
+        <view class="cart-items">
+          <block wx:for="{{cartDetails}}" wx:key="serviceId">
+            <view class="cart-item">
+              <text class="cart-emoji">{{service.emoji}}</text>
+              <view class="cart-info"><view>{{service.name}}</view><text>{{service.detail}}</text></view>
+              <view class="quantity"><button data-id="{{serviceId}}" data-delta="-1" bindtap="changeQuantity">−</button><text>{{quantity}}</text><button data-id="{{serviceId}}" data-delta="1" bindtap="changeQuantity">＋</button></view>
+            </view>
+          </block>
+        </view>
+        <view class="form-label">希望什么时候收到这份爱？<text>*</text></view>
+        <input class="form-input" value="{{time}}" bindinput="onTimeInput" placeholder="例如：今晚 7 点 / 周六下午" />
+        <view class="form-label">还有什么想悄悄告诉他？</view>
+        <textarea class="form-input note" value="{{note}}" bindinput="onNoteInput" placeholder="口味、地点，或者一句想说的话..." />
+        <view wx:if="{{error}}" class="error">{{error}}</view>
+        <button class="primary submit" bindtap="submitOrder">确认下单 ♡</button>
+        <view class="mail-tip">小程序版本暂未直接发送邮件。若要通知游杰，请接入后端或微信云函数调用邮件服务。</view>
+      </block>
+    </view>
+  </view>
+
+  <view wx:if="{{submitted}}" class="success">
+    <text class="success-icon">💌</text><view><view>订单收到啦！</view><text>他会在「{{time}}」带着满满的爱来找你。</text></view><button bindtap="closeSuccess">×</button>
+  </view>
+</view>
