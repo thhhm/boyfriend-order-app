@@ -29,6 +29,8 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
+      - name: Make asset paths relative
+        run: sed -i 's#src="/assets/#src="./assets/#g; s#href="/assets/#href="./assets/#g' dist/index.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
