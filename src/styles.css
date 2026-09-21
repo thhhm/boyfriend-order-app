@@ -18,6 +18,7 @@ h1 { color: #4b3435; font-family: 'ZCOOL XiaoWei', 'Noto Sans SC', serif; font-s
 h1 em { color: #cf7e87; font-style: normal; }
 .hero p { color: #80686a; line-height: 1.9; }
 .primary-button { border: 0; border-radius: 999px; background: #da8990; box-shadow: 0 8px 18px rgba(204, 120, 128, .24); color: white; font-weight: 700; padding: 13px 25px; transition: transform .2s, box-shadow .2s; }
+.primary-button:disabled { cursor: wait; opacity: .68; transform: none; }
 .primary-button:hover { box-shadow: 0 11px 23px rgba(204, 120, 128, .33); transform: translateY(-2px); }
 .hero-button { margin-top: 13px; }
 .hero-button span { margin-left: 22px; }

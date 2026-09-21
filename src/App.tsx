@@ -58,6 +58,7 @@ function App() {
   const [time, setTime] = useState('')
   const [formError, setFormError] = useState('')
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(cart))
@@ -96,14 +97,55 @@ function App() {
     }))
   }
 
-  const submitOrder = () => {
+  const submitOrder = async () => {
+    if (isSubmitting) return
     if (!time) {
       setFormError('请告诉我希望在什么时候为你安排呀～')
       return
     }
+    if (cartDetails.length === 0) {
+      setFormError('请先选择一份想要的服务呀～')
+      return
+    }
+
+    setIsSubmitting(true)
     setFormError('')
-    setIsSubmitted(true)
-    setIsCartOpen(false)
+    const orderServices = cartDetails.map(({ service, quantity }) => `${service.name} × ${quantity}`).join('、')
+    const submittedAt = new Intl.DateTimeFormat('zh-CN', {
+      dateStyle: 'medium',
+      timeStyle: 'short',
+    }).format(new Date())
+    const formData = new URLSearchParams({
+      '双方名字': '游杰 × 张雨茜',
+      '订单服务': orderServices,
+      '数量': String(itemCount),
+      '备注': note.trim() || '无',
+      '希望时间': time.trim(),
+      '提交时间': submittedAt,
+      _subject: '游杰 × 张雨茜的新服务订单',
+      _captcha: 'false',
+      _template: 'table',
+    })
+
+    try {
+      const response = await fetch('https://formsubmit.co/3047292542@qq.com', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        },
+        body: formData.toString(),
+      })
+      if (!response.ok) {
+        throw new Error(`邮件服务返回 ${response.status}`)
+      }
+      setIsSubmitted(true)
+      setIsCartOpen(false)
+    } catch {
+      setFormError('订单暂时没有发送成功，请检查网络后再试一次。刚才的内容不会被伪装成已提交。')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -170,7 +212,7 @@ function App() {
           <div className="panel-header"><div><p className="section-kicker">your little wish list</p><h2>我的订单 <span>♡</span></h2></div><button className="close-button" onClick={() => setIsCartOpen(false)} aria-label="关闭订单">×</button></div>
           {cartDetails.length === 0 ? <div className="empty-cart"><div>🧺</div><h3>订单还是空空的</h3><p>挑一份今天想要的爱吧，<br />他已经准备好啦～</p><button className="primary-button" onClick={() => setIsCartOpen(false)}>去逛逛</button></div> : <>
             <div className="cart-items">{cartDetails.map(({ service, quantity }) => <div className="cart-item" key={service.id}><span className="cart-item-emoji">{service.emoji}</span><div className="cart-item-info"><strong>{service.name}</strong><small>{service.detail}</small></div><div className="quantity-control"><button onClick={() => updateQuantity(service.id, -1)} aria-label={`减少 ${service.name}`}>−</button><span>{quantity}</span><button onClick={() => updateQuantity(service.id, 1)} aria-label={`增加 ${service.name}`}>＋</button></div></div>)}</div>
-            <div className="order-form"><label htmlFor="order-time">希望什么时候收到这份爱？<span>*</span></label><input id="order-time" value={time} onChange={(event) => { setTime(event.target.value); setFormError('') }} placeholder="例如：今晚 7 点 / 周六下午" /><label htmlFor="order-note">还有什么想悄悄告诉他？</label><textarea id="order-note" value={note} onChange={(event) => setNote(event.target.value)} placeholder="口味、地点，或者一句想说的话..." rows={3} />{formError && <p className="form-error" role="alert">{formError}</p>}<button className="primary-button submit-button" onClick={submitOrder}>确认下单 <span>♡</span></button></div>
+            <div className="order-form"><label htmlFor="order-time">希望什么时候收到这份爱？<span>*</span></label><input id="order-time" value={time} onChange={(event) => { setTime(event.target.value); setFormError('') }} placeholder="例如：今晚 7 点 / 周六下午" /><label htmlFor="order-note">还有什么想悄悄告诉他？</label><textarea id="order-note" value={note} onChange={(event) => setNote(event.target.value)} placeholder="口味、地点，或者一句想说的话..." rows={3} />{formError && <p className="form-error" role="alert">{formError}</p>}<button className="primary-button submit-button" onClick={submitOrder} disabled={isSubmitting} aria-busy={isSubmitting}>{isSubmitting ? '正在发送…' : '确认下单'} {!isSubmitting && <span>♡</span>}</button></div>
           </>}
         </aside>
       </div>}
