@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://thhhm.github.io/boyfriend-order-app/sitemap.xml

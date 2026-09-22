@@ -1,0 +1,12 @@
+{
+  "name": "男朋友服务点单",
+  "short_name": "爱的点单",
+  "description": "把今天想要的陪伴与心意温柔地点回家。",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fffaf8",
+  "theme_color": "#fff7f3",
+  "icons": [{ "src": "./favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}
